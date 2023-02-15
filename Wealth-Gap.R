@@ -5,7 +5,7 @@ home_owner <- read.csv('https://raw.githubusercontent.com/rfordatascience/tidytu
 race_wealth <- read.csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-02-09/race_wealth.csv')
 
 # Load relevant libraries
-Your code here
+library(ggplot2)
 
 # How is average family wealth in the U.S. trending over time?
 
@@ -13,11 +13,12 @@ Your code here
 # Then we need to make a new dataframe from race_wealth with the average family wealth per year for all races
 # Save this as `total_avg_wealth`
 
-Your code here
+total_avg_wealth <- race_wealth %>% filter(type == "Average") %>% group_by(year) %>% summarize(avg_wealth = (mean(wealth_family, na.rm = TRUE)))
 
 # Now let's make a scatter plot of total average family wealth over time
 
-Your code here
+ggplot = (data = total_avg_wealth) + geom_point(mapping = aes(x = year, y = avg_wealth)) +
+  geom_line(mapping = aes(x = year, y = avg_wealth))
 
 # Now let's draw a line plot on top of the same scatterplot
 
